@@ -1,0 +1,174 @@
+@use "tailwindcss";
+
+/* ================================
+   VARIABLES GLOBALES - GRIS ESPACIAL THEME
+   ================================ */
+
+:root {
+  /* Colores primarios - Basados en Gris Espacial (#64748B) */
+  --primary-50: #f8fafc;
+  --primary-100: #f1f5f9;
+  --primary-200: #e2e8f0;
+  --primary-300: #cbd5e1;
+  --primary-400: #94a3b8;
+  --primary-500: #64748b; /* Color base - Gris Espacial */
+  --primary-600: #475569;
+  --primary-700: #334155;
+  --primary-800: #1e293b;
+  --primary-900: #0f172a;
+
+  /* Colores secundarios */
+  --secondary-50: #f9fafb;
+  --secondary-100: #f3f4f6;
+  --secondary-200: #e5e7eb;
+  --secondary-300: #d1d5db;
+  --secondary-400: #9ca3af;
+  --secondary-500: #6b7280;
+  --secondary-600: #4b5563;
+  --secondary-700: #374151;
+  --secondary-800: #1f2937;
+  --secondary-900: #111827;
+
+  /* Colores de acento */
+  --accent-50: #faf5ff;
+  --accent-100: #f3e8ff;
+  --accent-200: #e9d5ff;
+  --accent-300: #d8b4fe;
+  --accent-400: #c084fc;
+  --accent-500: #a855f7;
+  --accent-600: #9333ea;
+  --accent-700: #7c2d12;
+  --accent-800: #581c87;
+  --accent-900: #3b0764;
+
+  /* Colores de estado - Success */
+  --success-50: #f0fdf4;
+  --success-100: #dcfce7;
+  --success-200: #bbf7d0;
+  --success-300: #86efac;
+  --success-400: #4ade80;
+  --success-500: #22c55e;
+  --success-600: #16a34a;
+  --success-700: #15803d;
+  --success-800: #166534;
+  --success-900: #14532d;
+
+  /* Colores de estado - Warning */
+  --warning-50: #fffbeb;
+  --warning-100: #fef3c7;
+  --warning-200: #fde68a;
+  --warning-300: #fcd34d;
+  --warning-400: #fbbf24;
+  --warning-500: #f59e0b;
+  --warning-600: #d97706;
+  --warning-700: #b45309;
+  --warning-800: #92400e;
+  --warning-900: #78350f;
+
+  /* Colores de estado - Error */
+  --error-50: #fef2f2;
+  --error-100: #fee2e2;
+  --error-200: #fecaca;
+  --error-300: #fca5a5;
+  --error-400: #f87171;
+  --error-500: #ef4444;
+  --error-600: #dc2626;
+  --error-700: #b91c1c;
+  --error-800: #991b1b;
+  --error-900: #7f1d1d;
+
+  transition: background-color 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    color 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    border-color 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* ================================
+   TEMA OSCURO
+   ================================ */
+
+[data-theme="dark"] {
+  /* Colores primarios en modo oscuro - Gris Espacial invertido */
+  --primary-50: #020617;
+  --primary-100: #0f172a;
+  --primary-200: #1e293b;
+  --primary-300: #334155;
+  --primary-400: #475569;
+  --primary-500: #64748b; /* Color base mantiene consistencia */
+  --primary-600: #94a3b8;
+  --primary-700: #cbd5e1;
+  --primary-800: #e2e8f0;
+  --primary-900: #f8fafc;
+
+  /* Colores secundarios en modo oscuro */
+  --secondary-50: #111827;
+  --secondary-100: #1f2937;
+  --secondary-200: #374151;
+  --secondary-300: #4b5563;
+  --secondary-400: #6b7280;
+  --secondary-500: #9ca3af;
+  --secondary-600: #d1d5db;
+  --secondary-700: #e5e7eb;
+  --secondary-800: #f3f4f6;
+  --secondary-900: #f9fafb;
+
+  /* Colores de acento en modo oscuro */
+  --accent-50: #3b0764;
+  --accent-100: #581c87;
+  --accent-200: #7c2d12;
+  --accent-300: #9333ea;
+  --accent-400: #a855f7;
+  --accent-500: #c084fc;
+  --accent-600: #d8b4fe;
+  --accent-700: #e9d5ff;
+  --accent-800: #f3e8ff;
+  --accent-900: #faf5ff;
+
+  /* Colores de estado mantienen su semántica */
+  --success-50: #14532d;
+  --success-100: #166534;
+  --success-200: #15803d;
+  --success-300: #16a34a;
+  --success-400: #22c55e;
+  --success-500: #4ade80;
+  --success-600: #86efac;
+  --success-700: #bbf7d0;
+  --success-800: #dcfce7;
+  --success-900: #f0fdf4;
+
+  --warning-50: #78350f;
+  --warning-100: #92400e;
+  --warning-200: #b45309;
+  --warning-300: #d97706;
+  --warning-400: #f59e0b;
+  --warning-500: #fbbf24;
+  --warning-600: #fcd34d;
+  --warning-700: #fde68a;
+  --warning-800: #fef3c7;
+  --warning-900: #fffbeb;
+
+  --error-50: #7f1d1d;
+  --error-100: #991b1b;
+  --error-200: #b91c1c;
+  --error-300: #dc2626;
+  --error-400: #ef4444;
+  --error-500: #f87171;
+  --error-600: #fca5a5;
+  --error-700: #fecaca;
+  --error-800: #fee2e2;
+  --error-900: #fef2f2;
+
+  transition: background-color 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    color 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* ================================
+   TRANSICIONES GLOBALES
+   ================================ */
+
+*,
+*::before,
+*::after {
+  transition: background-color 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    color 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    border-color 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+}
