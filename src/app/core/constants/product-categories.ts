@@ -1,7 +1,25 @@
+/**
+ * @fileoverview Product Categories Configuration | Configuración de Categorías de Productos
+ * @description Category definitions, filters, and business logic for product catalog
+ * @description Definiciones de categorías, filtros y lógica de negocio para el catálogo de productos
+ * @version 1.0.0
+ * @author Techtopia Development Team
+ */
+
 import { ProductCategory, Brand } from '@core/models';
 
+// =============================================================================
+// CATEGORY DEFINITIONS | DEFINICIONES DE CATEGORÍAS
+// =============================================================================
+
+/**
+ * Product category configuration with metadata
+ * Configuración de categorías de productos con metadatos
+ * 
+ * @const PRODUCT_CATEGORIES
+ */
 export const PRODUCT_CATEGORIES = {
-  // === COMPONENTES PC ===
+  // PC Components | Componentes PC
   [ProductCategory.CPU]: {
     name: 'Procesadores',
     icon: 'cpu',
@@ -38,7 +56,7 @@ export const PRODUCT_CATEGORIES = {
     name: 'Almacenamiento',
     icon: 'storage',
     group: 'components',
-    brands: [Brand.SAMSUNG_STORAGE, Brand.WD_STORAGE, Brand.SEAGATE_STORAGE, Brand.CRUCIAL_STORAGE], // ✅ Agregado CRUCIAL_STORAGE
+    brands: [Brand.SAMSUNG_STORAGE, Brand.WD_STORAGE, Brand.SEAGATE_STORAGE, Brand.CRUCIAL_STORAGE],
     filters: ['interface', 'capacity', 'readSpeed', 'writeSpeed', 'price'],
     benchmarks: ['CrystalDiskMark', 'AS SSD', 'ATTO']
   },
@@ -54,7 +72,7 @@ export const PRODUCT_CATEGORIES = {
     name: 'Refrigeración',
     icon: 'cooling',
     group: 'components',
-    brands: [Brand.NOCTUA_COOLING, Brand.BEQUIET_COOLING, Brand.ARCTIC_COOLING, Brand.CORSAIR_COOLING, Brand.COOLERMASTER_COOLING], // ✅ Agregado ARCTIC_COOLING
+    brands: [Brand.NOCTUA_COOLING, Brand.BEQUIET_COOLING, Brand.ARCTIC_COOLING, Brand.CORSAIR_COOLING, Brand.COOLERMASTER_COOLING],
     filters: ['type', 'tdpRating', 'noiseLevel', 'price'],
     benchmarks: ['Cooling Performance', 'Noise Level', 'Installation Ease']
   },
@@ -62,17 +80,17 @@ export const PRODUCT_CATEGORIES = {
     name: 'Cajas/Chasis',
     icon: 'case',
     group: 'components',
-    brands: [Brand.FRACTALDESIGN_CASE, Brand.LIANLI_CASE, Brand.PHANTEKS_CASE, Brand.CORSAIR_CASE, Brand.NZXT_CASE], // ✅ Agregado CORSAIR_CASE y NZXT_CASE
+    brands: [Brand.FRACTALDESIGN_CASE, Brand.LIANLI_CASE, Brand.PHANTEKS_CASE, Brand.CORSAIR_CASE, Brand.NZXT_CASE],
     filters: ['formFactor', 'size', 'material', 'price'],
     benchmarks: ['Build Quality', 'Airflow', 'Cable Management']
   },
 
-  // === PERIFÉRICOS ===
+  // Peripherals | Periféricos
   [ProductCategory.MONITOR]: {
     name: 'Monitores',
     icon: 'monitor',
     group: 'peripherals',
-    brands: [Brand.LG_MONITOR, Brand.DELL_MONITOR, Brand.SAMSUNG_MONITOR, Brand.ACER_MONITOR, Brand.BENQ_MONITOR, Brand.ASUS_MONITOR], // ✅ Agregado ASUS_MONITOR
+    brands: [Brand.LG_MONITOR, Brand.DELL_MONITOR, Brand.SAMSUNG_MONITOR, Brand.ACER_MONITOR, Brand.BENQ_MONITOR, Brand.ASUS_MONITOR],
     filters: ['size', 'resolution', 'refreshRate', 'panelType', 'price'],
     benchmarks: ['Color Accuracy', 'Input Lag', 'Response Time']
   },
@@ -80,7 +98,7 @@ export const PRODUCT_CATEGORIES = {
     name: 'Teclados',
     icon: 'keyboard',
     group: 'peripherals',
-    brands: [Brand.LOGITECH_KEYBOARD, Brand.RAZER_KEYBOARD, Brand.CORSAIR_KEYBOARD, Brand.STEELSERIES_KEYBOARD, Brand.KEYCHRON_KEYBOARD], // ✅ Agregado KEYCHRON_KEYBOARD
+    brands: [Brand.LOGITECH_KEYBOARD, Brand.RAZER_KEYBOARD, Brand.CORSAIR_KEYBOARD, Brand.STEELSERIES_KEYBOARD, Brand.KEYCHRON_KEYBOARD],
     filters: ['type', 'layout', 'switches', 'connectivity', 'price'],
     benchmarks: ['Typing Test', 'Latency', 'Build Quality']
   },
@@ -96,17 +114,17 @@ export const PRODUCT_CATEGORIES = {
     name: 'Auriculares',
     icon: 'headphones',
     group: 'peripherals',
-    brands: [Brand.APPLE_HEADPHONES, Brand.SONY_HEADPHONES, Brand.BOSE_HEADPHONES, Brand.SENNHEISER_HEADPHONES], // ✅ Reordenado según model
+    brands: [Brand.APPLE_HEADPHONES, Brand.SONY_HEADPHONES, Brand.BOSE_HEADPHONES, Brand.SENNHEISER_HEADPHONES],
     filters: ['type', 'connectivity', 'anc', 'battery', 'price'],
     benchmarks: ['Audio Quality', 'ANC Performance', 'Battery Life']
   },
   
-  // ✅ NUEVAS CATEGORÍAS - FALTABAN EN EL ARCHIVO ORIGINAL
+  // Additional peripherals
   [ProductCategory.WEBCAM]: {
     name: 'Cámaras Web',
     icon: 'webcam',
     group: 'peripherals',
-    brands: [], // ✅ No hay brands específicos definidos aún en el model
+    brands: [],
     filters: ['resolution', 'fps', 'microphone', 'autofocus', 'price'],
     benchmarks: ['Image Quality', 'Low Light Performance', 'Audio Quality']
   },
@@ -114,7 +132,7 @@ export const PRODUCT_CATEGORIES = {
     name: 'Altavoces',
     icon: 'speakers',
     group: 'peripherals',
-    brands: [], // ✅ No hay brands específicos definidos aún en el model
+    brands: [],
     filters: ['power', 'connectivity', 'size', 'price'],
     benchmarks: ['Audio Quality', 'Bass Response', 'Volume Range']
   },
@@ -122,17 +140,17 @@ export const PRODUCT_CATEGORIES = {
     name: 'Micrófonos',
     icon: 'microphone',
     group: 'peripherals',
-    brands: [], // ✅ No hay brands específicos definidos aún en el model
+    brands: [],
     filters: ['type', 'connectivity', 'pattern', 'price'],
     benchmarks: ['Audio Quality', 'Noise Rejection', 'Sensitivity']
   },
 
-  // === MOBILE ===
+  // Mobile Devices | Dispositivos Móviles
   [ProductCategory.SMARTPHONE]: {
     name: 'Smartphones',
     icon: 'smartphone',
     group: 'mobile',
-    brands: [Brand.APPLE_MOBILE, Brand.SAMSUNG_MOBILE, Brand.GOOGLE_MOBILE, Brand.ONEPLUS_MOBILE], // ✅ Reordenado según model
+    brands: [Brand.APPLE_MOBILE, Brand.SAMSUNG_MOBILE, Brand.GOOGLE_MOBILE, Brand.ONEPLUS_MOBILE],
     filters: ['os', 'ram', 'storage', 'camera', 'price'],
     benchmarks: ['Geekbench 5', 'AnTuTu', '3DMark Wild Life']
   },
@@ -153,12 +171,12 @@ export const PRODUCT_CATEGORIES = {
     benchmarks: ['Battery Life', 'GPS Accuracy', 'Health Features']
   },
 
-  // === ACCESORIOS - NUEVAS CATEGORÍAS ===
+  // Accessories | Accesorios
   [ProductCategory.ACCESSORIES]: {
     name: 'Accesorios',
     icon: 'accessories',
     group: 'accessories',
-    brands: [], // ✅ No hay brands específicos definidos aún
+    brands: [],
     filters: ['type', 'compatibility', 'material', 'price'],
     benchmarks: ['Build Quality', 'Functionality', 'Value']
   },
@@ -166,7 +184,7 @@ export const PRODUCT_CATEGORIES = {
     name: 'Cables',
     icon: 'cables',
     group: 'accessories',
-    brands: [], // ✅ No hay brands específicos definidos aún
+    brands: [],
     filters: ['type', 'length', 'speed', 'price'],
     benchmarks: ['Data Speed', 'Build Quality', 'Durability']
   },
@@ -174,12 +192,22 @@ export const PRODUCT_CATEGORIES = {
     name: 'Adaptadores',
     icon: 'adapters',
     group: 'accessories',
-    brands: [], // ✅ No hay brands específicos definidos aún
+    brands: [],
     filters: ['type', 'compatibility', 'power', 'price'],
     benchmarks: ['Compatibility', 'Power Delivery', 'Build Quality']
   }
 } as const;
 
+// =============================================================================
+// CATEGORY GROUPS | GRUPOS DE CATEGORÍAS
+// =============================================================================
+
+/**
+ * Category group definitions for navigation
+ * Definiciones de grupos de categorías para navegación
+ * 
+ * @const CATEGORY_GROUPS
+ */
 export const CATEGORY_GROUPS = {
   components: {
     name: 'Componentes PC',
@@ -228,7 +256,16 @@ export const CATEGORY_GROUPS = {
   }
 } as const;
 
-// ✅ MATRIZ DE COMPATIBILIDAD - EXACTA AL PRODUCT MODEL
+// =============================================================================
+// COMPATIBILITY MATRIX | MATRIZ DE COMPATIBILIDAD
+// =============================================================================
+
+/**
+ * Product compatibility relationships
+ * Relaciones de compatibilidad entre productos
+ * 
+ * @const COMPATIBILITY_MATRIX
+ */
 export const COMPATIBILITY_MATRIX = {
   [ProductCategory.CPU]: [
     ProductCategory.MOTHERBOARD, 
@@ -273,7 +310,6 @@ export const COMPATIBILITY_MATRIX = {
     ProductCategory.COOLING,
     ProductCategory.PSU
   ],
-  // Periféricos - Sin compatibilidad específica
   [ProductCategory.MONITOR]: [ProductCategory.GPU],
   [ProductCategory.KEYBOARD]: [],
   [ProductCategory.MOUSE]: [],
@@ -281,66 +317,24 @@ export const COMPATIBILITY_MATRIX = {
   [ProductCategory.WEBCAM]: [],
   [ProductCategory.SPEAKERS]: [],
   [ProductCategory.MICROPHONE]: [],
-  // Mobile - Sin compatibilidad específica
   [ProductCategory.SMARTPHONE]: [],
   [ProductCategory.TABLET]: [],
   [ProductCategory.SMARTWATCH]: [],
-  // Accesorios - Sin compatibilidad específica
   [ProductCategory.ACCESSORIES]: [],
   [ProductCategory.CABLES]: [],
   [ProductCategory.ADAPTERS]: []
 } as const;
 
-// ✅ ESPECIFICACIONES REQUERIDAS - ALINEADAS CON INTERFACES
-export const CATEGORY_REQUIRED_SPECS = {
-  [ProductCategory.CPU]: [
-    'architecture', 'socket', 'cores', 'threads', 'baseClock', 'boostClock', 'tdp'
-  ],
-  [ProductCategory.GPU]: [
-    'architecture', 'memorySize', 'memoryType', 'baseClock', 'boostClock', 'tdp'
-  ],
-  [ProductCategory.MOTHERBOARD]: [
-    'socket', 'formFactor', 'chipset', 'memorySlots', 'maxMemory'
-  ],
-  [ProductCategory.RAM]: [
-    'type', 'capacity', 'speed', 'latency', 'modules'
-  ],
-  [ProductCategory.STORAGE]: [
-    'type', 'interface', 'capacity', 'readSpeed', 'writeSpeed'
-  ],
-  [ProductCategory.PSU]: [
-    'wattage', 'efficiency', 'modular', 'formFactor'
-  ],
-  [ProductCategory.COOLING]: [
-    'type', 'socketCompatibility', 'tdpRating'
-  ],
-  [ProductCategory.CASE]: [
-    'formFactor', 'dimensions', 'material'
-  ],
-  [ProductCategory.MONITOR]: [
-    'screenSize', 'resolution', 'refreshRate', 'panelType'
-  ],
-  [ProductCategory.KEYBOARD]: [
-    'type', 'layout', 'switches', 'connectivity'
-  ],
-  [ProductCategory.MOUSE]: [
-    'type', 'sensor', 'connectivity', 'ergonomics'
-  ],
-  [ProductCategory.SMARTPHONE]: [
-    'os', 'chipset', 'ram', 'storage', 'display', 'camera', 'battery'
-  ],
-  [ProductCategory.TABLET]: [
-    'os', 'chipset', 'ram', 'storage', 'display'
-  ],
-  [ProductCategory.SMARTWATCH]: [
-    'os', 'compatibility', 'display', 'battery', 'sensors'
-  ],
-  [ProductCategory.HEADPHONES]: [
-    'type', 'drivers', 'connectivity', 'anc'
-  ]
-} as const;
+// =============================================================================
+// FILTER CONFIGURATIONS | CONFIGURACIONES DE FILTROS
+// =============================================================================
 
-// ✅ FILTROS AVANZADOS - EXPANDIDOS PARA TODAS LAS CATEGORÍAS
+/**
+ * Advanced filter definitions by category
+ * Definiciones de filtros avanzados por categoría
+ * 
+ * @const ADVANCED_FILTERS
+ */
 export const ADVANCED_FILTERS = {
   [ProductCategory.CPU]: {
     performance: ['cores', 'threads', 'boostClock'],
@@ -414,7 +408,16 @@ export const ADVANCED_FILTERS = {
   }
 } as const;
 
-// ✅ RANGOS DE PRECIOS - ACTUALIZADOS CON 3 MONEDAS
+// =============================================================================
+// PRICING CONFIGURATION | CONFIGURACIÓN DE PRECIOS
+// =============================================================================
+
+/**
+ * Price ranges by category and currency
+ * Rangos de precios por categoría y moneda
+ * 
+ * @const PRICE_RANGES
+ */
 export const PRICE_RANGES = {
   [ProductCategory.CPU]: { 
     USD: { min: 60, max: 1800 },
@@ -493,7 +496,16 @@ export const PRICE_RANGES = {
   }
 } as const;
 
-// ✅ OPCIONES DE ORDENAMIENTO - EXPANDIDAS
+// =============================================================================
+// SORT OPTIONS | OPCIONES DE ORDENAMIENTO
+// =============================================================================
+
+/**
+ * Default and category-specific sort options
+ * Opciones de ordenamiento por defecto y específicas de categoría
+ * 
+ * @const SORT_OPTIONS
+ */
 export const SORT_OPTIONS = {
   default: [
     { key: 'price.current', direction: 'asc', name: 'Precio: Menor a Mayor' },
