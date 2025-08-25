@@ -1,3 +1,7 @@
+// ================================
+// ENUMS BASE - VERSIÓN FINAL
+// ================================
+
 export enum ProductCategory {
   // === COMPONENTES DE PC ===
   CPU = 'cpu',
@@ -56,6 +60,7 @@ export enum Brand {
   SAMSUNG_STORAGE = 'Samsung',
   WD_STORAGE = 'Western Digital',
   SEAGATE_STORAGE = 'Seagate',
+  CRUCIAL_STORAGE = 'Crucial',
 
   // === PSU ===
   SEASONIC_PSU = 'Seasonic',
@@ -66,7 +71,7 @@ export enum Brand {
   // === COOLING ===
   NOCTUA_COOLING = 'Noctua',
   BEQUIET_COOLING = 'be quiet!',
-  AIO_COOLING = 'Arctic',
+  ARCTIC_COOLING = 'Arctic',
   CORSAIR_COOLING = 'Corsair',
   COOLERMASTER_COOLING = 'Cooler Master',
 
@@ -74,6 +79,8 @@ export enum Brand {
   FRACTALDESIGN_CASE = 'Fractal Design',
   LIANLI_CASE = 'Lian Li',
   PHANTEKS_CASE = 'Phanteks',
+  CORSAIR_CASE = 'Corsair',
+  NZXT_CASE = 'NZXT',
 
   // === MONITOR ===
   LG_MONITOR = 'LG',
@@ -81,39 +88,14 @@ export enum Brand {
   ACER_MONITOR = 'Acer',
   BENQ_MONITOR = 'BenQ',
   SAMSUNG_MONITOR = 'Samsung',
-
-  // === PERIFÉRICOS ===
-  LOGITECH_PERIPHERALS = 'Logitech',
-  RAZER_PERIPHERALS = 'Razer',
-  STEELSERIES_PERIPHERALS = 'SteelSeries',
-
-  // === MOBILE ===
-  APPLE_MOBILE = 'Apple',
-  GOOGLE_MOBILE = 'Google',
-  ONEPLUS_MOBILE = 'OnePlus',
-  SAMSUNG_MOBILE = 'Samsung',
-
-  // === SMARTWATCH ===
-  APPLE_WATCH = 'Apple',
-  SAMSUNG_WATCH = 'Samsung',
-  GARMIN_WATCH = 'Garmin',
-
-  // === TABLET ===
-  APPLE_TABLET = 'Apple',
-  SAMSUNG_TABLET = 'Samsung',
-  GOOGLE_TABLET = 'Google',
-
-  // === HEADPHONES ===
-  APPLE_HEADPHONES = 'Apple',
-  SONY_HEADPHONES = 'Sony',
-  BOSE_HEADPHONES = 'Bose',
-  SENNHEISER_HEADPHONES = 'Sennheiser',
+  ASUS_MONITOR = 'ASUS',
 
   // === KEYBOARD ===
   LOGITECH_KEYBOARD = 'Logitech',
   RAZER_KEYBOARD = 'Razer',
   CORSAIR_KEYBOARD = 'Corsair',
   STEELSERIES_KEYBOARD = 'SteelSeries',
+  KEYCHRON_KEYBOARD = 'Keychron',
 
   // === MOUSE ===
   LOGITECH_MOUSE = 'Logitech',
@@ -121,11 +103,27 @@ export enum Brand {
   CORSAIR_MOUSE = 'Corsair',
   STEELSERIES_MOUSE = 'SteelSeries',
 
-  // === AUDIO ===
-  SONY_AUDIO = 'Sony',
-  BOSE_AUDIO = 'Bose',
-  SENNHEISER_AUDIO = 'Sennheiser',
-  AUDIOTECHNICA_AUDIO = 'Audio-Technica',
+  // === HEADPHONES ===
+  APPLE_HEADPHONES = 'Apple',
+  SONY_HEADPHONES = 'Sony',
+  BOSE_HEADPHONES = 'Bose',
+  SENNHEISER_HEADPHONES = 'Sennheiser',
+
+  // === MOBILE ===
+  APPLE_MOBILE = 'Apple',
+  GOOGLE_MOBILE = 'Google',
+  ONEPLUS_MOBILE = 'OnePlus',
+  SAMSUNG_MOBILE = 'Samsung',
+
+  // === TABLET ===
+  APPLE_TABLET = 'Apple',
+  SAMSUNG_TABLET = 'Samsung',
+  GOOGLE_TABLET = 'Google',
+
+  // === SMARTWATCH ===
+  APPLE_WATCH = 'Apple',
+  SAMSUNG_WATCH = 'Samsung',
+  GARMIN_WATCH = 'Garmin',
 }
 
 // === ENUMS ESPECÍFICOS POR CATEGORÍA ===
@@ -133,7 +131,7 @@ export enum Brand {
 export enum CPUSocket {
   // Intel
   LGA1700 = 'LGA 1700',
-  LGA1200 = 'LGA 1200',
+  LGA1200 = 'LGA 1200', 
   LGA1151 = 'LGA 1151',
   LGA2066 = 'LGA 2066',
   // AMD
@@ -171,6 +169,7 @@ export enum PSUEfficiency {
   SILVER = '80+ Silver',
   BRONZE = '80+ Bronze',
   STANDARD = '80+ Standard',
+  WHITE = '80+ White',
 }
 
 export enum MonitorResolution {
@@ -179,6 +178,7 @@ export enum MonitorResolution {
   UHD_4K = '3840x2160',
   ULTRAWIDE_QHD = '3440x1440',
   ULTRAWIDE_4K = '3840x1600',
+  UHD_8K = '7680x4320',
 }
 
 export enum KeyboardLayout {
@@ -186,6 +186,7 @@ export enum KeyboardLayout {
   QWERTY_ES = 'QWERTY ES',
   AZERTY = 'AZERTY',
   QWERTZ = 'QWERTZ',
+  QWERTY_UK = 'QWERTY UK',
 }
 
 export enum KeyboardType {
@@ -196,28 +197,36 @@ export enum KeyboardType {
 }
 
 // ================================
-// INTERFACES COMUNES
+// INTERFACES COMUNES - VERSIÓN FINAL
 // ================================
 
 export interface Price {
   readonly msrp: number;
   readonly current: number;
-  readonly currency: 'EUR' | 'USD' | 'MXN';
+  readonly currency: 'USD' | 'MXN' | 'EUR'; // ✅ Orden correcto
   readonly lastUpdated: string;
   readonly retailLinks?: readonly RetailLink[];
+  readonly historicalPrices?: readonly {
+    readonly date: string;
+    readonly price: number;
+    readonly currency: 'USD' | 'MXN' | 'EUR';
+  }[];
 }
 
 export interface RetailLink {
   readonly retailer: string;
   readonly url: string;
   readonly price: number;
+  readonly currency: 'USD' | 'MXN' | 'EUR';
   readonly inStock: boolean;
+  readonly lastChecked: string;
 }
 
 export interface ProductImage {
   readonly thumbnail: string;
   readonly gallery: readonly string[];
   readonly alt: string;
+  readonly fallback?: string;
 }
 
 export interface ProductRating {
@@ -230,6 +239,7 @@ export interface ProductRating {
     readonly quality: number;
     readonly features: number;
   };
+  readonly lastUpdated: string;
 }
 
 export interface Benchmark {
@@ -237,10 +247,12 @@ export interface Benchmark {
   readonly score: number;
   readonly unit: string;
   readonly higherIsBetter: boolean;
+  readonly testDate: string;
+  readonly version?: string;
 }
 
 // ================================
-// PRODUCTO BASE
+// PRODUCTO BASE - VERSIÓN FINAL
 // ================================
 
 export interface BaseProduct {
@@ -255,27 +267,36 @@ export interface BaseProduct {
     readonly releaseDate: string;
     readonly discontinuedDate?: string;
     readonly stockLevel: 'high' | 'medium' | 'low' | 'out-of-stock';
+    readonly expectedRestockDate?: string;
   };
   readonly images: ProductImage;
   readonly rating: ProductRating;
   readonly description: string;
   readonly keyFeatures: readonly string[];
   readonly tags: readonly string[];
-  readonly weight?: number; // gramos
+  readonly weight?: number;
   readonly dimensions?: {
     readonly length: number;
     readonly width: number;
     readonly height: number;
+    readonly unit: 'mm' | 'cm';
   };
+  readonly warranty?: {
+    readonly years: number;
+    readonly type: 'Manufacturer' | 'Retailer' | 'Extended';
+    readonly coverage: string;
+  };
+  readonly createdAt: string;
+  readonly updatedAt: string;
 }
 
 // ================================
-// INTERFACES DE PRODUCTOS ACTUALIZADAS
+// INTERFACES DE PRODUCTOS - EXACTAS AL UNION TYPE
 // ================================
 
 export interface CPUProduct extends BaseProduct {
   readonly category: ProductCategory.CPU;
-  readonly brand: Brand.INTEL_CPU | Brand.AMD_CPU; // ✅ Corregido
+  readonly brand: Brand.INTEL_CPU | Brand.AMD_CPU;
   readonly specifications: {
     readonly architecture: string;
     readonly socket: CPUSocket;
@@ -289,86 +310,153 @@ export interface CPUProduct extends BaseProduct {
       readonly l2: string;
       readonly l3: string;
     };
-    readonly tdp: number; // Watts
+    readonly tdp: number;
     readonly integratedGraphics?: string;
     readonly memorySupport: {
       readonly type: MemoryType[];
-      readonly maxCapacity: number; // GB
-      readonly maxSpeed: number; // MHz
+      readonly maxCapacity: number;
+      readonly maxSpeed: number;
+      readonly channels: number;
     };
     readonly pcieLanes: number;
     readonly unlocked: boolean;
+    readonly stepping?: string;
   };
   readonly performance: {
     readonly benchmarks: readonly Benchmark[];
     readonly thermals: {
       readonly tdp: number;
       readonly maxTemp: number;
+      readonly idleTemp?: number;
     };
     readonly powerConsumption: {
       readonly idle: number;
       readonly load: number;
+      readonly peak?: number;
     };
   };
   readonly compatibility: {
     readonly motherboards: readonly string[];
     readonly coolers: readonly string[];
+    readonly ramKits: readonly string[];
   };
 }
 
 export interface GPUProduct extends BaseProduct {
   readonly category: ProductCategory.GPU;
-  readonly brand: Brand.NVIDIA_GPU | Brand.AMD_GPU | Brand.INTEL_GPU; // ✅ Corregido
+  readonly brand: Brand.NVIDIA_GPU | Brand.AMD_GPU | Brand.INTEL_GPU;
   readonly specifications: {
     readonly architecture: string;
     readonly process: string;
-    readonly baseClock: number; // MHz
-    readonly boostClock: number; // MHz
-    readonly memorySize: number; // GB
+    readonly baseClock: number;
+    readonly boostClock: number;
+    readonly memorySize: number;
     readonly memoryType: string;
-    readonly memoryBus: number; // bits
-    readonly memoryBandwidth: number; // GB/s
-    readonly cudaCores?: number; // NVIDIA
-    readonly rtCores?: number; // NVIDIA
-    readonly tensorCores?: number; // NVIDIA
-    readonly computeUnits?: number; // AMD
-    readonly rayAccelerators?: number; // AMD
+    readonly memoryBus: number;
+    readonly memoryBandwidth: number;
+    readonly cudaCores?: number;
+    readonly rtCores?: number;
+    readonly tensorCores?: number;
+    readonly computeUnits?: number;
+    readonly rayAccelerators?: number;
+    readonly infinityCacheSize?: number;
     readonly tdp: number;
     readonly pciInterface: string;
     readonly outputs: readonly string[];
     readonly powerConnectors: readonly string[];
-    readonly length: number; // mm
+    readonly length: number;
     readonly slots: number;
+    readonly recommendedPSU: number;
   };
   readonly performance: {
     readonly benchmarks: readonly Benchmark[];
     readonly thermals: {
       readonly tdp: number;
       readonly maxTemp: number;
+      readonly targetTemp?: number;
     };
     readonly gamePerformance: readonly {
       readonly game: string;
       readonly resolution: string;
       readonly settings: string;
       readonly fps: number;
+      readonly minimumFps?: number;
+      readonly maximumFps?: number;
     }[];
   };
   readonly features: {
-    readonly dlss?: string; // NVIDIA
-    readonly fsr?: string; // AMD
+    readonly dlss?: string;
+    readonly fsr?: string;
     readonly rayTracing: boolean;
-    readonly nvenc?: boolean; // NVIDIA
-    readonly avEncode?: boolean; // AMD
+    readonly nvenc?: boolean;
+    readonly avEncode?: boolean;
+    readonly hdmi21: boolean;
+    readonly displayport14: boolean;
+  };
+}
+
+export interface MotherboardProduct extends BaseProduct {
+  readonly category: ProductCategory.MOTHERBOARD;
+  readonly brand: Brand.ASUS_MOBO | Brand.MSI_MOBO | Brand.GIGABYTE_MOBO | Brand.ASROCK_MOBO;
+  readonly specifications: {
+    readonly socket: CPUSocket;
+    readonly formFactor: MotherboardFormFactor;
+    readonly chipset: string;
+    readonly memorySlots: number;
+    readonly maxMemory: number;
+    readonly memoryType: MemoryType[];
+    readonly memorySpeed: number[];
+    readonly expansionSlots: {
+      readonly pciex16: number;
+      readonly pciex8: number;
+      readonly pciex4: number;
+      readonly pciex1: number;
+      readonly m2Slots: number;
+    };
+    readonly storageConnectors: {
+      readonly sata3: number;
+      readonly sata2: number;
+      readonly m2_2280: number;
+      readonly m2_2242: number;
+    };
+    readonly rearIO: readonly string[];
+    readonly networking: {
+      readonly ethernet: string;
+      readonly wifi?: string;
+      readonly bluetooth?: string;
+    };
+    readonly audio: {
+      readonly codec: string;
+      readonly channels: string;
+      readonly impedanceSupport?: number;
+    };
+    readonly rgb: boolean;
+    readonly overclockingSupport: boolean;
+    readonly multiGpuSupport?: readonly string[];
+  };
+  readonly features: {
+    readonly bios: string;
+    readonly biosFeatures: readonly string[];
+    readonly cooling: readonly string[];
+    readonly builtin: readonly string[];
+    readonly debugLed?: boolean;
+    readonly clearCmos?: boolean;
+  };
+  readonly compatibility: {
+    readonly cpus: readonly string[];
+    readonly ramKits: readonly string[];
+    readonly gpus: readonly string[];
   };
 }
 
 export interface RAMProduct extends BaseProduct {
   readonly category: ProductCategory.RAM;
-  readonly brand: Brand.CORSAIR_RAM | Brand.CRUCIAL_RAM | Brand.GSKILL_RAM | Brand.KINGSTON_RAM | Brand.TEAMGROUP_RAM; // ✅ Corregido
+  readonly brand: Brand.CORSAIR_RAM | Brand.CRUCIAL_RAM | Brand.GSKILL_RAM | Brand.KINGSTON_RAM | Brand.TEAMGROUP_RAM;
   readonly specifications: {
     readonly type: MemoryType;
-    readonly capacity: number; // GB por módulo
-    readonly speed: number; // MHz
+    readonly capacity: number;
+    readonly totalCapacity: number;
+    readonly speed: number;
     readonly latency: {
       readonly cl: number;
       readonly trcd: number;
@@ -376,38 +464,42 @@ export interface RAMProduct extends BaseProduct {
       readonly tras: number;
     };
     readonly voltage: number;
-    readonly modules: number; // Kit de 1x, 2x, 4x
+    readonly modules: number;
     readonly formFactor: 'DIMM' | 'SO-DIMM';
     readonly heatspreader: boolean;
     readonly rgb: boolean;
     readonly ecc: boolean;
+    readonly xmpProfile?: string;
+    readonly docp?: string;
   };
   readonly performance: {
     readonly benchmarks: readonly Benchmark[];
     readonly overclockingPotential: 'low' | 'medium' | 'high';
+    readonly recommendedFor: readonly string[];
   };
 }
 
 export interface StorageProduct extends BaseProduct {
   readonly category: ProductCategory.STORAGE;
-  readonly brand: Brand.SAMSUNG_STORAGE | Brand.WD_STORAGE | Brand.SEAGATE_STORAGE; // ✅ Corregido
+  readonly brand: Brand.SAMSUNG_STORAGE | Brand.WD_STORAGE | Brand.SEAGATE_STORAGE | Brand.CRUCIAL_STORAGE;
   readonly specifications: {
-    readonly type: 'SSD';
+    readonly type: 'SSD' | 'HDD';
     readonly interface: StorageInterface;
-    readonly capacity: number; // GB
-    readonly formFactor: 'M.2 2280' | '2.5"';
+    readonly capacity: number;
+    readonly formFactor: 'M.2 2280' | 'M.2 2242' | '2.5"' | '3.5"';
     readonly controller: string;
     readonly nandType: string;
     readonly dram: boolean;
     readonly slc: boolean;
-    readonly readSpeed: number; // MB/s
-    readonly writeSpeed: number; // MB/s
+    readonly readSpeed: number;
+    readonly writeSpeed: number;
     readonly iops: {
       readonly read: number;
       readonly write: number;
     };
-    readonly tbw: number; // Terabytes Written
-    readonly mtbf: number; // hours
+    readonly tbw: number;
+    readonly mtbf: number;
+    readonly encryption?: string;
   };
   readonly performance: {
     readonly benchmarks: readonly Benchmark[];
@@ -416,25 +508,215 @@ export interface StorageProduct extends BaseProduct {
       readonly result: number;
       readonly unit: string;
     }[];
+    readonly gameLoadingTimes?: readonly {
+      readonly game: string;
+      readonly loadTime: number;
+    }[];
+  };
+}
+
+export interface CoolingProduct extends BaseProduct {
+  readonly category: ProductCategory.COOLING;
+  readonly brand: Brand.NOCTUA_COOLING | Brand.BEQUIET_COOLING | Brand.ARCTIC_COOLING | Brand.CORSAIR_COOLING | Brand.COOLERMASTER_COOLING;
+  readonly specifications: {
+    readonly type: 'Air Cooler' | 'AIO Liquid' | 'Custom Loop' | 'Case Fan';
+    readonly socketCompatibility: readonly CPUSocket[];
+    readonly dimensions: {
+      readonly height: number;
+      readonly radiatorSize?: number;
+      readonly fanSize: number;
+      readonly thickness?: number;
+    };
+    readonly performance: {
+      readonly tdpRating: number;
+      readonly airflow: number;
+      readonly staticPressure: number;
+      readonly noiseLevel: {
+        readonly min: number;
+        readonly max: number;
+      };
+      readonly fanSpeed: {
+        readonly min: number;
+        readonly max: number;
+      };
+    };
+    readonly features: {
+      readonly pwmControl: boolean;
+      readonly rgb: boolean;
+      readonly bearingType: string;
+      readonly pumpSpeed?: number;
+    };
+  };
+}
+
+export interface MonitorProduct extends BaseProduct {
+  readonly category: ProductCategory.MONITOR;
+  readonly brand: Brand.LG_MONITOR | Brand.DELL_MONITOR | Brand.SAMSUNG_MONITOR | Brand.ACER_MONITOR | Brand.BENQ_MONITOR | Brand.ASUS_MONITOR;
+  readonly specifications: {
+    readonly screenSize: number;
+    readonly resolution: MonitorResolution;
+    readonly aspectRatio: string;
+    readonly panelType: 'IPS' | 'VA' | 'TN' | 'OLED' | 'QD-OLED';
+    readonly refreshRate: number[];
+    readonly responseTime: number;
+    readonly brightness: number;
+    readonly contrast: string;
+    readonly colorGamut: {
+      readonly srgb: number;
+      readonly adobergb: number;
+      readonly dciP3: number;
+      readonly rec2020?: number;
+    };
+    readonly hdr: {
+      readonly supported: boolean;
+      readonly standards: readonly string[];
+      readonly peakBrightness?: number;
+    };
+    readonly connectivity: {
+      readonly displayport: string[];
+      readonly hdmi: string[];
+      readonly usbc: boolean;
+      readonly other: readonly string[];
+    };
+    readonly features: {
+      readonly gsync: boolean;
+      readonly freesync: boolean;
+      readonly curvature: string;
+      readonly pivotable: boolean;
+      readonly heightAdjustable: boolean;
+      readonly vesa: string;
+      readonly builtInSpeakers?: boolean;
+      readonly usbHub?: boolean;
+    };
+  };
+  readonly performance: {
+    readonly calibration: {
+      readonly deltaE: number;
+      readonly uniformity: number;
+    };
+    readonly inputLag: number;
+    readonly powerConsumption: {
+      readonly typical: number;
+      readonly max: number;
+      readonly standby: number;
+    };
+  };
+}
+
+export interface KeyboardProduct extends BaseProduct {
+  readonly category: ProductCategory.KEYBOARD;
+  readonly brand: Brand.LOGITECH_KEYBOARD | Brand.RAZER_KEYBOARD | Brand.CORSAIR_KEYBOARD | Brand.STEELSERIES_KEYBOARD | Brand.KEYCHRON_KEYBOARD;
+  readonly specifications: {
+    readonly type: KeyboardType;
+    readonly layout: KeyboardLayout;
+    readonly size: 'Full-Size' | 'TKL' | '75%' | '65%' | '60%';
+    readonly switches: {
+      readonly brand: string;
+      readonly type: string;
+      readonly actuationForce: number;
+      readonly travelDistance: number;
+      readonly hotswappable: boolean;
+    };
+    readonly keycaps: {
+      readonly material: string;
+      readonly profile: string;
+      readonly printing: string;
+    };
+    readonly connectivity: {
+      readonly wired: boolean;
+      readonly wireless: boolean;
+      readonly bluetooth: boolean;
+      readonly dongle: boolean;
+    };
+    readonly features: {
+      readonly rgb: boolean;
+      readonly macro: boolean;
+      readonly mediaKeys: boolean;
+      readonly nkeyRollover: boolean;
+      readonly antiGhosting: boolean;
+    };
+    readonly battery?: {
+      readonly capacity: number;
+      readonly life: number;
+      readonly chargingTime: number;
+    };
+  };
+  readonly performance: {
+    readonly polling: number;
+    readonly latency: number;
+    readonly durability: number;
+  };
+}
+
+export interface MouseProduct extends BaseProduct {
+  readonly category: ProductCategory.MOUSE;
+  readonly brand: Brand.LOGITECH_MOUSE | Brand.RAZER_MOUSE | Brand.CORSAIR_MOUSE | Brand.STEELSERIES_MOUSE;
+  readonly specifications: {
+    readonly type: 'Gaming' | 'Office' | 'Ergonomic' | 'Vertical';
+    readonly sensor: {
+      readonly type: 'Optical' | 'Laser';
+      readonly model: string;
+      readonly dpi: {
+        readonly min: number;
+        readonly max: number;
+        readonly steps: number[];
+      };
+      readonly ips: number;
+      readonly acceleration: number;
+    };
+    readonly buttons: {
+      readonly total: number;
+      readonly programmable: number;
+      readonly sideButtons: number;
+    };
+    readonly connectivity: {
+      readonly wired: boolean;
+      readonly wireless: boolean;
+      readonly bluetooth: boolean;
+      readonly dongle: boolean;
+    };
+    readonly ergonomics: {
+      readonly handedness: 'Right' | 'Left' | 'Ambidextrous';
+      readonly grip: readonly string[];
+      readonly size: 'Small' | 'Medium' | 'Large';
+    };
+    readonly features: {
+      readonly rgb: boolean;
+      readonly profiles: number;
+      readonly weights: boolean;
+      readonly scroll: string;
+    };
+    readonly battery?: {
+      readonly capacity: number;
+      readonly life: number;
+      readonly chargingTime: number;
+      readonly chargingMethod: string;
+    };
+  };
+  readonly performance: {
+    readonly polling: number;
+    readonly responseTime: number;
+    readonly clickLatency: number;
+    readonly durability: number;
   };
 }
 
 export interface SmartphoneProduct extends BaseProduct {
   readonly category: ProductCategory.SMARTPHONE;
-  readonly brand: Brand.APPLE_MOBILE | Brand.SAMSUNG_MOBILE | Brand.GOOGLE_MOBILE | Brand.ONEPLUS_MOBILE; // ✅ Corregido y expandido
+  readonly brand: Brand.APPLE_MOBILE | Brand.SAMSUNG_MOBILE | Brand.GOOGLE_MOBILE | Brand.ONEPLUS_MOBILE;
   readonly specifications: {
     readonly os: string;
     readonly chipset: string;
     readonly cpu: string;
     readonly gpu: string;
-    readonly ram: number; // GB
-    readonly storage: number[]; // GB variants
+    readonly ram: number;
+    readonly storage: number[];
     readonly display: {
-      readonly size: number; // inches
+      readonly size: number;
       readonly resolution: string;
       readonly technology: string;
-      readonly refreshRate: number; // Hz
-      readonly brightness: number; // nits
+      readonly refreshRate: number;
+      readonly brightness: number;
     };
     readonly camera: {
       readonly main: {
@@ -457,9 +739,9 @@ export interface SmartphoneProduct extends BaseProduct {
       };
     };
     readonly battery: {
-      readonly capacity: number; // mAh
-      readonly chargingSpeed: number; // W
-      readonly wirelessCharging?: number; // W
+      readonly capacity: number;
+      readonly chargingSpeed: number;
+      readonly wirelessCharging?: number;
     };
     readonly connectivity: readonly string[];
     readonly waterResistance?: string;
@@ -468,20 +750,72 @@ export interface SmartphoneProduct extends BaseProduct {
   readonly performance: {
     readonly benchmarks: readonly Benchmark[];
     readonly batteryLife: {
-      readonly video: number; // hours
-      readonly web: number; // hours
+      readonly video: number;
+      readonly web: number;
+    };
+  };
+}
+
+export interface TabletProduct extends BaseProduct {
+  readonly category: ProductCategory.TABLET;
+  readonly brand: Brand.APPLE_TABLET | Brand.SAMSUNG_TABLET | Brand.GOOGLE_TABLET;
+  readonly specifications: {
+    readonly os: string;
+    readonly chipset: string;
+    readonly cpu: string;
+    readonly gpu: string;
+    readonly ram: number[];
+    readonly storage: number[];
+    readonly display: {
+      readonly size: number;
+      readonly resolution: string;
+      readonly technology: string;
+      readonly refreshRate: number;
+      readonly brightness: number;
+      readonly colorAccuracy: string;
+    };
+    readonly camera: {
+      readonly rear: {
+        readonly megapixels: number;
+        readonly aperture: string;
+        readonly features: readonly string[];
+      };
+      readonly front: {
+        readonly megapixels: number;
+        readonly aperture: string;
+      };
+    };
+    readonly battery: {
+      readonly capacity: number;
+      readonly chargingSpeed: number;
+      readonly wirelessCharging?: number;
+    };
+    readonly connectivity: readonly string[];
+    readonly accessories: {
+      readonly stylusSupport: boolean;
+      readonly keyboardSupport: boolean;
+      readonly standSupport: boolean;
+    };
+    readonly colors: readonly string[];
+  };
+  readonly performance: {
+    readonly benchmarks: readonly Benchmark[];
+    readonly batteryLife: {
+      readonly video: number;
+      readonly web: number;
+      readonly standby: number;
     };
   };
 }
 
 export interface SmartWatchProduct extends BaseProduct {
   readonly category: ProductCategory.SMARTWATCH;
-  readonly brand: Brand.APPLE_WATCH | Brand.SAMSUNG_WATCH | Brand.GARMIN_WATCH; // ✅ Corregido
+  readonly brand: Brand.APPLE_WATCH | Brand.SAMSUNG_WATCH | Brand.GARMIN_WATCH;
   readonly specifications: {
     readonly os: string;
     readonly compatibility: readonly string[];
     readonly display: {
-      readonly size: number; // mm
+      readonly size: number;
       readonly resolution: string;
       readonly technology: string;
       readonly brightness: number;
@@ -491,8 +825,8 @@ export interface SmartWatchProduct extends BaseProduct {
     readonly healthFeatures: readonly string[];
     readonly connectivity: readonly string[];
     readonly battery: {
-      readonly life: number; // hours
-      readonly chargingTime: number; // hours
+      readonly life: number;
+      readonly chargingTime: number;
       readonly chargingMethod: string;
     };
     readonly materials: {
@@ -500,7 +834,7 @@ export interface SmartWatchProduct extends BaseProduct {
       readonly band: readonly string[];
     };
     readonly waterResistance: string;
-    readonly storage?: number; // GB
+    readonly storage?: number;
     readonly gps: boolean;
     readonly cellular?: boolean;
   };
@@ -508,7 +842,7 @@ export interface SmartWatchProduct extends BaseProduct {
 
 export interface HeadphonesProduct extends BaseProduct {
   readonly category: ProductCategory.HEADPHONES;
-  readonly brand: Brand.SONY_HEADPHONES | Brand.BOSE_HEADPHONES | Brand.APPLE_HEADPHONES | Brand.SENNHEISER_HEADPHONES; // ✅ Corregido
+  readonly brand: Brand.APPLE_HEADPHONES | Brand.SONY_HEADPHONES | Brand.BOSE_HEADPHONES | Brand.SENNHEISER_HEADPHONES;
   readonly specifications: {
     readonly type: 'over-ear' | 'on-ear' | 'in-ear' | 'true-wireless';
     readonly drivers: {
@@ -542,58 +876,6 @@ export interface HeadphonesProduct extends BaseProduct {
   };
 }
 
-// ✅ NUEVAS INTERFACES PARA CATEGORÍAS FALTANTES
-
-export interface MotherboardProduct extends BaseProduct {
-  readonly category: ProductCategory.MOTHERBOARD;
-  readonly brand: Brand.ASUS_MOBO | Brand.MSI_MOBO | Brand.GIGABYTE_MOBO | Brand.ASROCK_MOBO; // ✅ Corregido
-  readonly specifications: {
-    readonly socket: CPUSocket;
-    readonly formFactor: MotherboardFormFactor;
-    readonly chipset: string;
-    readonly memorySlots: number;
-    readonly maxMemory: number; // GB
-    readonly memoryType: MemoryType[];
-    readonly memorySpeed: number[]; // MHz supported
-    readonly expansionSlots: {
-      readonly pciex16: number;
-      readonly pciex8: number;
-      readonly pciex4: number;
-      readonly pciex1: number;
-      readonly m2Slots: number;
-    };
-    readonly storageConnectors: {
-      readonly sata3: number;
-      readonly sata2: number;
-      readonly m2_2280: number;
-      readonly m2_2242: number;
-    };
-    readonly rearIO: readonly string[];
-    readonly networking: {
-      readonly ethernet: string; // "Gigabit", "2.5GbE"
-      readonly wifi?: string;
-      readonly bluetooth?: string;
-    };
-    readonly audio: {
-      readonly codec: string;
-      readonly channels: string; // "7.1", "5.1"
-    };
-    readonly rgb: boolean;
-    readonly overclockingSupport: boolean;
-  };
-  readonly features: {
-    readonly bios: string; // "UEFI", "Legacy"
-    readonly biosFeatures: readonly string[];
-    readonly cooling: readonly string[];
-    readonly builtin: readonly string[];
-  };
-  readonly compatibility: {
-    readonly cpus: readonly string[];
-    readonly ramKits: readonly string[];
-    readonly gpus: readonly string[];
-  };
-}
-
 export interface PSUProduct extends BaseProduct {
   readonly category: ProductCategory.PSU;
   readonly brand: Brand.SEASONIC_PSU | Brand.EVGA_PSU | Brand.CORSAIR_PSU | Brand.COOLERMASTER_PSU; // ✅ Corregido
@@ -612,6 +894,7 @@ export interface PSUProduct extends BaseProduct {
     readonly protections: readonly string[]; // ["OCP", "OVP", "UVP", "SCP", "OTP"]
     readonly fanSize: number; // mm
     readonly fanBearing: string;
+    readonly zeroFanMode?: boolean;
     readonly cables: {
       readonly sleeved: boolean;
       readonly length: Record<string, number>; // connector -> length in mm
@@ -624,18 +907,13 @@ export interface PSUProduct extends BaseProduct {
     readonly ripple: number; // mV
     readonly regulation: number; // %
     readonly holdupTime: number; // ms
-  };
-  readonly warranty: {
-    readonly years: number;
-    readonly type: string;
+    readonly noiseLevel?: number;
   };
 }
 
-// ✅ INTERFACES PARA PERIFÉRICOS NUEVOS
-
 export interface KeyboardProduct extends BaseProduct {
   readonly category: ProductCategory.KEYBOARD;
-  readonly brand: Brand.LOGITECH_KEYBOARD | Brand.RAZER_KEYBOARD | Brand.CORSAIR_KEYBOARD | Brand.STEELSERIES_KEYBOARD; // ✅ Corregido
+  readonly brand: Brand.LOGITECH_KEYBOARD | Brand.RAZER_KEYBOARD | Brand.CORSAIR_KEYBOARD | Brand.STEELSERIES_KEYBOARD | Brand.KEYCHRON_KEYBOARD; // ✅ Corregido
   readonly specifications: {
     readonly type: KeyboardType;
     readonly layout: KeyboardLayout;
@@ -733,7 +1011,7 @@ export interface MouseProduct extends BaseProduct {
 
 export interface MonitorProduct extends BaseProduct {
   readonly category: ProductCategory.MONITOR;
-  readonly brand: Brand.LG_MONITOR | Brand.DELL_MONITOR | Brand.SAMSUNG_MONITOR | Brand.ACER_MONITOR | Brand.BENQ_MONITOR; // ✅ Corregido
+  readonly brand: Brand.LG_MONITOR | Brand.DELL_MONITOR | Brand.SAMSUNG_MONITOR | Brand.ACER_MONITOR | Brand.BENQ_MONITOR | Brand.ASUS_MONITOR; // ✅ Corregido
   readonly specifications: {
     readonly screenSize: number; // inches
     readonly resolution: MonitorResolution;
@@ -747,10 +1025,12 @@ export interface MonitorProduct extends BaseProduct {
       readonly srgb: number; // %
       readonly adobergb: number; // %
       readonly dciP3: number; // %
+      readonly rec2020?: number; // %
     };
     readonly hdr: {
       readonly supported: boolean;
       readonly standards: readonly string[]; // ["HDR10", "HDR400", "HDR600"]
+      readonly peakBrightness?: number;
     };
     readonly connectivity: {
       readonly displayport: string[]; // ["DP 1.4", "DP 2.0"]
@@ -765,6 +1045,8 @@ export interface MonitorProduct extends BaseProduct {
       readonly pivotable: boolean;
       readonly heightAdjustable: boolean;
       readonly vesa: string; // "100x100", "200x200"
+      readonly builtInSpeakers?: boolean;
+      readonly usbHub?: boolean;
     };
   };
   readonly performance: {
@@ -835,7 +1117,7 @@ export interface TabletProduct extends BaseProduct {
 
 export interface CoolingProduct extends BaseProduct {
   readonly category: ProductCategory.COOLING;
-  readonly brand: Brand.NOCTUA_COOLING | Brand.BEQUIET_COOLING | Brand.CORSAIR_COOLING | Brand.COOLERMASTER_COOLING; // ✅ Corregido
+  readonly brand: Brand.NOCTUA_COOLING | Brand.BEQUIET_COOLING | Brand.ARCTIC_COOLING | Brand.CORSAIR_COOLING | Brand.COOLERMASTER_COOLING; // ✅ Corregido
   readonly specifications: {
     readonly type: 'Air Cooler' | 'AIO Liquid' | 'Custom Loop' | 'Case Fan';
     readonly socketCompatibility: readonly CPUSocket[];
@@ -843,6 +1125,7 @@ export interface CoolingProduct extends BaseProduct {
       readonly height: number; // mm (for air coolers)
       readonly radiatorSize?: number; // mm (for AIO)
       readonly fanSize: number; // mm
+      readonly thickness?: number; // mm
     };
     readonly performance: {
       readonly tdpRating: number; // W
@@ -861,6 +1144,7 @@ export interface CoolingProduct extends BaseProduct {
       readonly pwmControl: boolean;
       readonly rgb: boolean;
       readonly bearingType: string; // "SSO2", "FDB", "HydroBearing"
+      readonly pumpSpeed?: number;
     };
   };
 }
