@@ -3,6 +3,10 @@ import { provideRouter } from '@angular/router';
 
 import { routes } from './app.routes';
 
+import { injectSpeedInsights } from '@vercel/speed-insights';
+
+injectSpeedInsights();
+  
 export const appConfig: ApplicationConfig = {
   providers: [
     provideBrowserGlobalErrorListeners(),
